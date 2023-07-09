@@ -38,3 +38,5 @@ Step 4: Open the Arduino IDE and copy-paste the Arduino code to read data from t
 Step 5: Execute the Python code (ModelTraining.ipynb) to read sensor data from the serial port "COM3" and use that data to train using DNN machine learning model to train the sensor data. Need to train using both Good and Bad Engine data to accurately predict the Engine state
 
 Step 6: Execute the Python code (SmartMaintenancePrediction.py) to predict the Engine State which reads sensor data from the serial port "COM3" and use that data to predict the Engine State using trained DNN machine learning model
+
+Youtube Demo Link - https://youtu.be/cbxN01bEHkM
