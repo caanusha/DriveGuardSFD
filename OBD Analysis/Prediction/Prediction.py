@@ -59,7 +59,6 @@ def startdatacollection():
 
             # Execute Engine Run Time OBD command
             response_RunTime = connection.query(obd.commands.RUN_TIME)
-            response_ctemp.value = 98
 
             try:
                 time.sleep(1)
@@ -178,11 +177,6 @@ def startdatacollection():
                             st.markdown("### Coolant Temperature 🌡️ VS Time⏱️")
                             fig_coolantTemp = px.line(data_frame=df, y="Coolant Temperature", x="Time")
                             st.write(fig_coolantTemp)
-                            if(data_count == 5):
-                                with st.sidebar:
-                                    results_area = st.text_area('Real-time Report:',
-                                                        "Engine Overheat Detected!\nEngine Coolant Temperature > 95C at " + datetime.datetime.now().strftime(
-                                                            "%d-%m-%Y %H:%M:%S"))
 
                         # create two columns for engine load and run time
                         fig_engineload, fig_runtime = st.columns(2)
@@ -268,7 +262,20 @@ def main():
 
         if st.button("Generate Trip Report", key="compute"):
             results = compute(selectedAlgo)
-            # Create a textarea
-            results_area = st.text_area('Detailed Report:', "Engine Overheat Detected!\nEngine Coolant Temperature > 95C at "+datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"))
+
+            if results == 0:
+                results_area = st.text_area('Results:', "Smooth Driving")
+            elif results == 1:
+                results_area = st.text_area('Results:', "Potholes Detected")
+            elif results == 2:
+                results_area = st.text_area('Results:', "High Fuel Consumption Detected")
+            elif results == 3:
+                results_area = st.text_area('Results:', "Hard Braking Detected")
+            elif results == 4:
+                results_area = st.text_area('Results:', "Rash Driving Detected")
+            elif results == 5:
+                results_area = st.text_area('Results:', "Engine Overheat Detected")
+            elif results == 6:
+                results_area = st.text_area('Results:', "Hump Detected Detected")
 
 main()
